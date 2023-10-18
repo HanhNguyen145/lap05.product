@@ -1,0 +1,189 @@
+﻿@model BEWebApp.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style type="text/css">
+    #id_cat {
+        border: 1px solid lightgreen;
+        border-radius: 10px;
+        background-color: lightgreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: darkgreen;
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .table_cat{
+        margin-left:auto;
+        margin-right: auto;
+        width:900px;
+    }
+    #mot, #chin{
+        background-color: lightgray;
+    }
+    input, select, #muoi{
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
+    #bay {
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
+    #mot, #hai, #ba, #bon, #nam, #sau, #bay, #tam, #chin {
+        width: 270px;
+        height: 35px;
+    }
+    #nam{
+        padding-top: 5px;
+        padding-left: 5px;
+    }
+    #muoi{
+        width: 900px;
+    }
+    .col-md-offset-2{
+        padding-top:10px;
+        margin-left: -1px;
+    }
+</style>
+
+<h2 id="id_cat">QUẢN LÝ HÀNG HÓA</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <table class="table_cat">
+        <tr>
+            <td>
+                <label>MÃ HÀNG HÓA</label><br />
+                <input type="number" placeholder="auto number" id="mot" />
+            </td>
+            <td>
+                <label>TÊN HÀNG HÓA</label><br />
+                <input type="text" id="hai" />
+            </td>
+            <td>
+                <label>ĐƠN GIÁ</label><br />
+                <input type="text" id="ba" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>GIẢM GIÁ</label><br />
+                <input type="text" id="bon" />
+            </td>
+            <td>
+                <label>HÌNH ẢNH</label><br />
+                <input type="file" id="nam"/>
+            </td>
+            <td>
+                <label for="lang-select">LOẠI HÀNG</label><br />
+                <select name="lang" id="sau">
+                    <option value="watch">Đồng hồ đeo tay</option>
+                    <option value="laptop">Máy tính xách tay</option>
+                    <option value="camera">Máy ảnh</option>
+                    <option value="phone">Điện thoại</option>
+                    <option value="perfume">Nước hoa</option>
+                    <option value="jw">Nữ trang</option>
+                    <option value="hat">Nón thời trang</option>
+                    <option value="bag">Túi xách du lịch</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>HÀNG ĐẶC BIỆT?</label><br />
+                <form id="bay"><input type="radio" /> Đặc biệt <input type="radio" />Bình thường</form>
+            </td>
+            <td>
+                <label>NGÀY NHẬP</label><br />
+                <input type="text" id="tam" />
+            </td>
+            <td>
+                <label>SỐ LƯỢC XEM</label><br />
+                <input type="text" value="0" id="chin" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <label>MÔ TẢ</label><br />
+                <textarea rows="4" id="muoi"> 
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" class="btn btn-default" />
+                        <input type="reset" value="Nhập lại" class="btn btn-default" />
+                        @Html.ActionLink("Danh sách", "Index", null, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    @*<h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NamePro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DecriptionPro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DecriptionPro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Category", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImagePro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ImagePro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

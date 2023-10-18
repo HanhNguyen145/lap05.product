@@ -1,0 +1,199 @@
+﻿@model IEnumerable<BEWebApp.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 900px;
+    }
+
+    #id_cat, #item_name {
+        border: 1px solid lightgreen;
+        border-radius: 10px;
+        background-color: lightgreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: darkgreen;
+    }
+    .symbol{
+        display: flex;
+        margin-left: 450px;
+    }
+    
+    .symbol p{
+        border: 1px solid gray;
+        border-radius: 30px;
+        width: 45px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 18px;
+        color: blue;
+        padding-top:2px;
+        margin-right: 5px;
+    }
+</style>
+<h2 id="id_cat">QUẢN LÝ HÀNG HÓA</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div class="symbol">
+    <p>|<</p>
+    <p><<</p>
+    <p>>></p>
+    <p>>|</p>
+</div>
+<table class="table">
+    <tr id="item_name">
+        <th></th>
+        <th>
+            MÃ HH
+            @*@Html.DisplayNameFor(model => model.NamePro)*@
+        </th>
+        <th>
+            TÊN HH
+            @*@Html.DisplayNameFor(model => model.DecriptionPro)*@
+        </th>
+        <th>
+            ĐƠN GIÁ
+            @*@Html.DisplayNameFor(model => model.Price)*@
+        </th>
+        <th>
+            GIẢM GIÁ
+            @*@Html.DisplayNameFor(model => model.ImagePro)*@
+        </th>
+        <th>
+            LƯỢT XEM
+            @*@Html.DisplayNameFor(model => model.Category1.NameCate)*@
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name='name[]' id='check' />
+        </td>
+        <td>
+            1001
+        </td>
+        <td>
+            Aniseed Syrup
+        </td>
+        <td>
+            $190.00
+        </td>
+        <td>
+            0%
+        </td>
+        <td>
+            5
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Xóa", "Delete", null, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name='name[]' id='check' />
+        </td>
+        <td>
+            1002
+        </td>
+        <td>
+            Change
+        </td>
+        <td>
+            $19.00
+        </td>
+        <td>
+            0%
+        </td>
+        <td>
+            45
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Xóa", "Delete", null, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name='name[]' id='check' />
+        </td>
+        <td>
+            1003
+        </td>
+        <td>
+            Aniseed Syrup 2018
+        </td>
+        <td>
+            $10.00
+        </td>
+        <td>
+            0%
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Xóa", "Delete", null, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name='name[]' id='check' />
+        </td>
+        <td>
+            1004
+        </td>
+        <td>
+            Chef Anton's Cajun Seasoning
+        </td>
+        <td>
+            $22.00
+        </td>
+        <td>
+            0%
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Xóa", "Delete", null, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamePro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DecriptionPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category1.NameCate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>
+        </tr>
+    }
+
+</table>
